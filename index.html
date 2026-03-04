@@ -169,6 +169,31 @@
         <!-- Apollo script begin -->
         <script>(function initApolloInbound(){var TIMEOUT_MS=15000;var timeoutId;var style=document.createElement('style');style.id='apollo-form-prehide-css';style.textContent='form:has(input[type="email" i]),form:has(input[name="email" i]),.hs-form-iframe{position:relative!important}form:has(input[type="email" i])::before,form:has(input[name="email" i])::before,.hs-form-iframe::before{content:"";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;width:50px;height:50px;margin:auto;border:2.5px solid #e1e1e1;border-top:2.5px solid #9ea3a6;border-radius:50%;animation:spin 1s linear infinite;background-color:transparent;pointer-events:auto;z-index:999999;opacity:1}form:has(input[type="email" i]) *,form:has(input[name="email" i]) *,.hs-form-iframe *{opacity:0!important;user-select:none!important;pointer-events:none!important}@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}';(document.head || document.documentElement).appendChild(style);function cleanup(){var styleEl=document.getElementById('apollo-form-prehide-css');if(styleEl)styleEl.remove();if(timeoutId)clearTimeout(timeoutId);}timeoutId=setTimeout(function(){console.warn('[Apollo] Form enrichment timeout after 5s - revealing forms. Check network and console for errors.');cleanup();},TIMEOUT_MS);var nocache=Math.random().toString(36).substring(7);var script=document.createElement('script');script.src='https://assets.apollo.io/js/apollo-inbound.js?nocache=' + nocache;script.defer=true;script.onerror=function(){console.error('[Apollo] Failed to load form enrichment script');cleanup();};script.onload=function(){try{window.ApolloInbound.formEnrichment.init({appId: '69a71d7eeff9bd001d3fbf47',onReady: function(){cleanup();},onError: function(err){console.error('[Apollo] Form enrichment init error:',err);cleanup();}});}catch(err){console.error('[Apollo] Error initializing form enrichment:',err);cleanup();}};document.head.appendChild(script);})();</script>
         <!-- Apollo script end -->
+
+        <form id="lead-form" class="mt-6">
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="name" class="mb-1 block text-xs text-white/50">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Jane Doe" class="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm text-white transition placeholder:text-white/30 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/30">
+            </div>
+            <div>
+              <label for="email" class="mb-1 block text-xs text-white/50">Company Email *</label>
+              <input type="email" id="email" name="email" required placeholder="jane@company.com" class="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm text-white transition placeholder:text-white/30 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/30">
+            </div>
+            <div>
+              <label for="company" class="mb-1 block text-xs text-white/50">Company Name *</label>
+              <input type="text" id="company" name="company" required placeholder="Acme Corp" class="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm text-white transition placeholder:text-white/30 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/30">
+            </div>
+            <div>
+              <label for="role" class="mb-1 block text-xs text-white/50">Role / Title *</label>
+              <input type="text" id="role" name="role" required placeholder="Controller, VP Finance…" class="w-full rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm text-white transition placeholder:text-white/30 focus:border-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/30">
+            </div>
+          </div>
+          <button type="submit" class="mt-6 w-full rounded-lg bg-brand-primary px-8 py-4 text-base font-semibold text-white shadow-lg shadow-brand-primary/25 transition hover:bg-brand-accent hover:shadow-brand-accent/25 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-brand-navy">
+            Get My Modernization Roadmap
+          </button>
+          <p class="mt-3 text-center text-xs text-white/30">We respect your privacy and will never share your information.</p>
+        </form>
       </div>
     </div>
   </section>
