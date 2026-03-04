@@ -194,6 +194,15 @@
           </button>
           <p class="mt-3 text-center text-xs text-white/30">We respect your privacy and will never share your information.</p>
         </form>
+
+        <!-- Thank-you state (hidden by default) -->
+        <div id="thank-you" class="hidden py-12 text-center">
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-brand-sage/20">
+            <svg class="h-8 w-8 text-brand-sage" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 class="mb-2 text-2xl font-bold">Thank You!</h3>
+          <p class="text-white/60">We've received your information. A Joon Solutions specialist will reach out within 1 business day with your personalized modernization roadmap.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -272,5 +281,35 @@
     </div>
   </footer>
 
+  <script>
+    (function () {
+      var form = document.getElementById('lead-form');
+      var thankYou = document.getElementById('thank-you');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Validate required fields
+        var valid = true;
+        form.querySelectorAll('[required]').forEach(function (field) {
+          if (!field.value.trim()) {
+            field.classList.add('border-red-400');
+            valid = false;
+          } else {
+            field.classList.remove('border-red-400');
+          }
+        });
+
+        if (!valid) return;
+
+        // Let Apollo capture the submission data, then show thank-you
+        // Small delay so Apollo's listener fires first
+        setTimeout(function () {
+          form.classList.add('hidden');
+          thankYou.classList.remove('hidden');
+        }, 300);
+      });
+    })();
+  </script>
 </body>
 </html>
