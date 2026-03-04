@@ -287,8 +287,6 @@
       var thankYou = document.getElementById('thank-you');
 
       form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
         // Validate required fields
         var valid = true;
         form.querySelectorAll('[required]').forEach(function (field) {
@@ -300,14 +298,20 @@
           }
         });
 
-        if (!valid) return;
+        if (!valid) {
+          e.preventDefault();
+          return;
+        }
 
-        // Let Apollo capture the submission data, then show thank-you
-        // Small delay so Apollo's listener fires first
+        // Don't prevent default — let Apollo intercept the native submit.
+        // Show thank-you after a short delay to allow Apollo to process.
         setTimeout(function () {
           form.classList.add('hidden');
           thankYou.classList.remove('hidden');
-        }, 300);
+        }, 500);
+
+        // Prevent actual page navigation
+        e.preventDefault();
       });
     })();
   </script>
